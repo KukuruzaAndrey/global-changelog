@@ -5,6 +5,7 @@ import fs from 'fs';
 
 const keyWord = 'CHANGELOG.md';
 const startChar = '+';
+console.log(__dirname);
 const git = simpleGit(__dirname);
 
 git.log()
