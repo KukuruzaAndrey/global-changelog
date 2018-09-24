@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import simpleGit from 'simple-git/promise';
 import showdown from 'showdown';
 import fs from 'fs';
@@ -6,7 +7,7 @@ const keyWord = 'CHANGELOG.md';
 const startChar = '+';
 const git = simpleGit(__dirname);
 
-export default () => git.log()
+git.log()
     .then(log => log.all.map(commit => commit.hash))
     .then((commitHashes) => git.diff([commitHashes[15], commitHashes[0]]))
     .then(diff => buildData(diff))
