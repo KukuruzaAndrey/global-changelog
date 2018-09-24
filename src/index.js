@@ -1,4 +1,4 @@
 import simpleGit from 'simple-git';
-const git = simpleGit(__dirname);
 
-console.log(git);
+const git = simpleGit(__dirname);
+git.log((err, log) => console.log(log));
