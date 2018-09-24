@@ -6,7 +6,7 @@ const keyWord = 'CHANGELOG.md';
 const startChar = '+';
 const git = simpleGit(__dirname);
 
-git.log()
+export default () => git.log()
     .then(log => log.all.map(commit => commit.hash))
     .then((commitHashes) => git.diff([commitHashes[15], commitHashes[0]]))
     .then(diff => buildData(diff))
