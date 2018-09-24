@@ -1,7 +1,13 @@
 {
   "name": "global-changelog",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Generate global changelog from several packages for some time interval",
+  "bin": {
+    "global-changelog":"dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,6 +16,7 @@
   "author": "KukuruzaAndrey",
   "license": "ISC",
   "dependencies": {
+    "showdown": "^1.8.6",
     "simple-git": "^1.102.0"
   },
   "devDependencies": {
