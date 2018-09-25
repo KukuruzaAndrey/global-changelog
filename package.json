@@ -1,6 +1,6 @@
 {
   "name": "global-changelog",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Generate global changelog from several packages for some time interval",
   "bin": {
     "global-changelog": "dist/bin/global-changelog.js"
