@@ -1,12 +1,12 @@
 {
   "name": "global-changelog",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Generate global changelog from several packages for some time interval",
   "bin": {
-    "global-changelog":"./dist/index.js"
+    "global-changelog":"dist/index.js"
   },
   "files": [
-    "./dist/index.js"
+    "dist"
   ],
   "main": "index.js",
   "scripts": {
