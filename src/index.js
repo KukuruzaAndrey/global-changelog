@@ -3,23 +3,27 @@ import simpleGit from 'simple-git/promise';
 import showdown from 'showdown';
 import fs from 'fs';
 
-const keyWord = 'CHANGELOG.md';
+const keyWord = 'CHANGELOG';
 const startChar = '+';
 const git = simpleGit('./');
 
 export default (isHTML) => {
 
     if (isHTML) {
-        return git.log({'--decorate': 'full'})
-            .then(log => console.log(log)// log.all.map(commit => commit.hash))
-                // .then((commitHashes) => git.diff([commitHashes[15], commitHashes[0]]))
-                // .then(diff => buildData(diff))
-                // .then(changes => htmlRender(changes))
-                // .then(html => fs.appendFile('global-changelog.html', html, 'utf8', err => {
-                //         if (err) throw err;
-                //         console.log('Changelog generate successfully');
-                //     })
-            );
+        git.log()
+            .then(commitList => commitList.latest)
+            .then(latestCommit => {
+                git.tags({"--sort": "-creatordate"})
+                    .then(tagList => tagList.all.filter(tag => tag.includes(keyWord.toLowerCase()))[0])
+                    .then(latestChangelogTag => git.diff([latestChangelogTag, latestCommit]))
+                    .then(diff => buildData(diff))
+                    .then(changes => htmlRender(changes))
+                    .then(html => fs.appendFile('global-changelog.html', html, 'utf8', err => {
+                            if (err) throw err;
+                            console.log('Changelog generate successfully');
+                        })
+                    ).catch(er => console.log(er));
+            })
     } else {
         git.log()
             .then(log => log.all.map(commit => commit.hash))
