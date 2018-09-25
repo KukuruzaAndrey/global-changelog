@@ -1,9 +1,9 @@
 {
   "name": "global-changelog",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Generate global changelog from several packages for some time interval",
   "bin": {
-    "global-changelog":"../ubjs/index.js"
+    "global-changelog":"./dist/index.js"
   },
   "files": [
     "./dist/index.js"
