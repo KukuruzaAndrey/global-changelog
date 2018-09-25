@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 
 import program from 'commander'
-import generateChangelog from '..'
+import { generate, init } from '..'
 
 program
-    .version('0.2.1')
-    .description('Generate changelog of changelogs for some time period')
-    .option('-c, --commit', 'With commit tag')
-    .action(() => {
-        generateChangelog(program.commit)
-    });
-program.parse(process.argv);
+  .version('0.3.0')
+  .description('Generate changelog of changelogs for some time period')
+  .option('-t, --tag', 'with tagging to git')
+  .option('-i, --init', 'create initiate tag')
+  .action(() => {
+    program.init
+      ? init()
+      : generate(program.tag)
+  })
+program.parse(process.argv)
