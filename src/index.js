@@ -10,22 +10,23 @@ const git = simpleGit('./');
 export default (isHTML) => {
 
     if (isHTML) {
-        return git.log()
-            .then(log => log.all.map(commit => commit.hash))
-            .then((commitHashes) => git.diff([commitHashes[15], commitHashes[0]]))
-            .then(diff => buildData(diff))
-            .then(changes => htmlRender(changes))
-            .then(html => fs.appendFile('global-changelog.html', html, 'utf8', err => {
-                if (err) throw err;
-                console.log('Changelog generate successfully');
-            }));
+        return git.log({'--decorate': 'full'})
+            .then(log => console.log(log)// log.all.map(commit => commit.hash))
+                // .then((commitHashes) => git.diff([commitHashes[15], commitHashes[0]]))
+                // .then(diff => buildData(diff))
+                // .then(changes => htmlRender(changes))
+                // .then(html => fs.appendFile('global-changelog.html', html, 'utf8', err => {
+                //         if (err) throw err;
+                //         console.log('Changelog generate successfully');
+                //     })
+            );
     } else {
-         git.log()
+        git.log()
             .then(log => log.all.map(commit => commit.hash))
             .then((commitHashes) => git.diff([commitHashes[15], commitHashes[0]]))
             .then(diff => buildData(diff))
             .then(changes => rawRender(changes))
-            .then( text =>  console.log(text));
+            .then(text => console.log(text));
     }
 };
 
