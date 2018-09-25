@@ -6,7 +6,7 @@ import fs from 'fs';
 const keyWord = 'CHANGELOG.md';
 const startChar = '+';
 console.log(__dirname, 11);
-const git = simpleGit(__dirname);
+const git = simpleGit('./');
 
 git.log()
     .then(log => log.all.map(commit => commit.hash))
